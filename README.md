@@ -15,12 +15,12 @@ Django REST frameworkの練習リポジトリ
 クローン
 ```
 git clone https://github.com/amatsukixgithub/django_practice.git
-
-cd django_practice/
 ```
 
 マイグレート
 ```
+cd django_practice/
+
 python manage.py migrate
 ```
 
@@ -35,12 +35,12 @@ python manage.py runserver
 
 image_pathを指定した場合201が返却される
 ```
-curl http://localhost:8000/example.com/ -d '{"image_path":"abc/abc"}' -H 'Content-Type:application/json' -XPOST
+curl http://localhost:8000/example.com/ -d '{"image_path":"abc/abc"}' -v -H 'Content-Type:application/json' -XPOST
 ```
 
 image_pathが空白の場合400が返却される
 ```
-curl http://localhost:8000/example.com/ -d '{"image_path":""}' -H 'Content-Type:application/json' -XPOST
+curl http://localhost:8000/example.com/ -d '{"image_path":""}' -v -H 'Content-Type:application/json' -XPOST
 ```
 
 * GET
