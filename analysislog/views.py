@@ -31,7 +31,13 @@ class AnalysisLogViewSet(mixins.CreateModelMixin,
 
         return Response({'success': serializer.data['success'],
                          'message': serializer.data['message'],
-                         'estimated_data': {
-                             'class': serializer.data['field_class'],
-                             'confidence': serializer.data['confidence']
-                         }}, status=response_status, headers=headers)
+                         'estimated_data':
+                             self.return_estimated_data(serializer.data['field_class'],
+                                                        serializer.data['confidence'])
+                         }, status=response_status, headers=headers)
+
+    def return_estimated_data(self, field_class, confidence):
+        if not field_class or not confidence:
+            return {}
+
+        return {'class': field_class, 'confidence': confidence}

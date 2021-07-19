@@ -6,6 +6,11 @@ from rest_framework import serializers
 from .models import AnalysisLog
 
 
+def analyze_with_ai():
+    # AI分析する想定
+    time.sleep(1)
+
+
 class AnalysisLogSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -22,14 +27,19 @@ class AnalysisLogSerializer(serializers.ModelSerializer):
                 message='Error:E50012'
             )
 
+        # APIに接続
+        request_time = time.time()
+        analyze_with_ai()
+        response_time = time.time()
+
         analysis_log = AnalysisLog(
             image_path=image_path,
             success=True,
             message='success',
             field_class=random.randrange(1, 9),
             confidence=random.random(),
-            request_timestamp=time.time(),
-            response_timestamp=time.time()
+            request_timestamp=request_time,
+            response_timestamp=response_time
         )
         analysis_log.save()
         return analysis_log
