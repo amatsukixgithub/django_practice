@@ -9,6 +9,7 @@ from .models import AnalysisLog
 def analyze_with_ai():
     # AI分析する想定
     time.sleep(1)
+    return {'class': random.randrange(1, 9), 'confidence': random.random()}
 
 
 class AnalysisLogSerializer(serializers.ModelSerializer):
@@ -29,15 +30,15 @@ class AnalysisLogSerializer(serializers.ModelSerializer):
 
         # APIに接続
         request_time = time.time()
-        analyze_with_ai()
+        result = analyze_with_ai()
         response_time = time.time()
 
         analysis_log = AnalysisLog(
             image_path=image_path,
             success=True,
             message='success',
-            field_class=random.randrange(1, 9),
-            confidence=random.random(),
+            field_class=result['class'],
+            confidence=result['confidence'],
             request_timestamp=request_time,
             response_timestamp=response_time
         )
