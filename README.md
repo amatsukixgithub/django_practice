@@ -10,6 +10,15 @@
 
 Django REST frameworkの練習リポジトリ
 
+## System Requirements
+
+以下のライブラリがインストールされている事を前提とします。
+
+```
+pip install django
+pip install djangorestframework
+```
+
 ## Usage
 
 クローン
